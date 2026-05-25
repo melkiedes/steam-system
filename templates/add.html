@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add Steam Data</h2>
+
+<form method="POST">
+
+    <input name="pressure" placeholder="Pressure" class="form-control mb-2">
+
+    <input name="temperature" placeholder="Temperature" class="form-control mb-2">
+
+    <input name="water_level" placeholder="Water Level" class="form-control mb-2">
+
+    <input name="fuel" placeholder="Fuel" class="form-control mb-2">
+
+    <label>Fuel Consumption</label>
+
+    <input name="fuel_consumption" class="form-control mb-2">
+
+    <input name="remark" placeholder="Remark" class="form-control mb-2">
+
+    <button class="btn btn-success">Save</button>
+
+</form>
+
+{% endblock %}

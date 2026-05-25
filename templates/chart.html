@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Steam Performance Analysis</h2>
+
+<!-- SELECT OPTIONS -->
+<div class="mb-3">
+
+    <label>Select Analysis Type:</label>
+
+    <select id="chartType" class="form-control">
+
+        <option value="1">Pressure vs Temperature</option>
+        <option value="2">Pressure vs Fuel</option>
+        <option value="3">Temperature vs Fuel</option>
+        <option value="4">Pressure vs Temperature vs Fuel</option>
+
+    </select>
+
+</div>
+
+<canvas id="myChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const labels = {{ labels | safe }};
+
+const pressure = {{ pressures | safe }};
+const temperature = {{ temperatures | safe }};
+const fuel = {{ fuel | safe }};
+
+let chart;
+
+function renderChart(type) {
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    let datasets = [];
+
+    if (type === "1") {
+
+        datasets = [
+            { label: "Pressure", data: pressure, borderWidth: 2 },
+            { label: "Temperature", data: temperature, borderWidth: 2 }
+        ];
+
+    } else if (type === "2") {
+
+        datasets = [
+            { label: "Pressure", data: pressure, borderWidth: 2 },
+            { label: "Fuel (kg)", data: fuel, borderWidth: 2 }
+        ];
+
+    } else if (type === "3") {
+
+        datasets = [
+            { label: "Temperature", data: temperature, borderWidth: 2 },
+            { label: "Fuel (kg)", data: fuel, borderWidth: 2 }
+        ];
+
+     } else if (type === "4") {
+
+        datasets = [
+            { label: "Pressure", data: pressure, borderWidth: 2 },
+            { label: "Temperature", data: temperature, borderWidth: 2 },
+            { label: "Fuel (kg)", data: fuel, borderWidth: 2 }
+        ];
+
+     }
+    
+    chart = new Chart(document.getElementById('myChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        }
+    });
+}
+
+// default chart
+renderChart("1");
+
+// change event
+document.getElementById("chartType").addEventListener("change", function () {
+    renderChart(this.value);
+});
+
+</script>
+
+{% endblock %}
