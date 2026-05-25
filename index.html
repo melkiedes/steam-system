@@ -1,0 +1,81 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">Steam Management Dashboard</h1>
+
+<div class="row">
+
+    <!-- Pressure Card -->
+    <div class="col-md-4">
+        <div class="card border-primary mb-3">
+
+            <div class="card-header">
+                Steam Pressure
+            </div>
+
+            <div class="card-body">
+
+                <h2>{{ log.pressure }} bar</h2>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Temperature Card -->
+    <div class="col-md-4">
+        <div class="card border-danger mb-3">
+
+            <div class="card-header">
+                Temperature
+            </div>
+
+            <div class="card-body">
+
+                <h2>{{ log.temperature }} °C</h2>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Water Level Card -->
+    <div class="col-md-4">
+        <div class="card border-success mb-3">
+
+            <div class="card-header">
+                Water Level
+            </div>
+
+            <div class="card-body">
+
+                <h2>{{ log.water_level }}</h2>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Fuel + Remark -->
+<div class="card mt-3">
+
+    <div class="card-body">
+
+        <p><strong>Fuel:</strong> {{ log.fuel }}</p>
+
+        <p><strong>Fuel Consumption:</strong> {{ log.fuel_consumption }} kg</p>
+
+        <p><strong>Remark:</strong> {{ log.remark }}</p>
+
+        <p><strong>Operator:</strong> {{ log.operator }}</p>
+
+        <p><strong>Time:</strong> {{ log.timestamp }}</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

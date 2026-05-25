@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Steam Logs History</h2>
+
+    <a href="/" class="btn btn-secondary mb-3">
+        Back to Dashboard
+    </a>
+
+    <form method="GET">
+        <input name="search" placeholder="Search pressure..." class="form-control">
+        <button class="btn btn-primary mt-2">Search</button>
+    </form>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+		<th>Operator</th>
+                <th>Pressure</th>
+                <th>Temperature</th>
+                <th>Water Level</th>
+                <th>Fuel</th>
+                <th>Fuel Consumption (kg)</th>
+                <th>Remark</th>
+		<th>Date Time</th>
+                <th>Action</th>
+		<th>Modify</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for log in logs %}
+
+            <tr>
+                <td>{{ log.id }}</td>
+		<td>{{ log.operator }}</td>
+                <td>{{ log.pressure }}</td>
+                <td>{{ log.temperature }}</td>
+                <td>{{ log.water_level }}</td>
+                <td>{{ log.fuel }}</td>
+                <td>{{ log.fuel_consumption }} kg</td>
+                <td>{{ log.remark }}</td>
+		<td>{{ log.timestamp }}</td>
+		<td>
+    		   <a href="/delete/{{ log.id }}" class="btn btn-danger btn-sm">
+        	       Delete
+    		   </a>
+		<td>
+		   <a href="/edit/{{ log.id }}" class="btn btn-warning btn-sm">
+    		       Edit
+		   </a>
+		</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+{% endblock %}
